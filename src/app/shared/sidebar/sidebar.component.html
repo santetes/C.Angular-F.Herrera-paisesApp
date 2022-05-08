@@ -1,26 +1,29 @@
 <h2>Busquedas</h2>
-        <hr>
-        <div class="list-group">
-<!-- routerLinkActive: manda la clase indicada al componente cuando este enlace se encuentra activado  -->
-            <a 
-                routerLink=""
-                routerLinkActive="active"
-                [routerLinkActiveOptions]="{ exact:true }"
-                class="list-group-item list-group-item-action ">
-                Buscar País
-            </a>
+<hr />
+<ul class="list-group">
+  <!-- routerLinkActive: manda la clase indicada al componente cuando este enlace se encuentra activado  -->
+  <li
+    routerLink=""
+    routerLinkActive="active"
+    [routerLinkActiveOptions]="{ exact: true }"
+    class="list-group-item list-group-item-action"
+  >
+    Buscar País
+  </li>
 
-            <a 
-                routerLink="region"
-                routerLinkActive="active"
-                class="list-group-item list-group-item-action">
-                Buscar Región
-            </a>
+  <li
+    routerLink="region"
+    routerLinkActive="active"
+    class="list-group-item list-group-item-action"
+  >
+    Buscar Región
+  </li>
 
-            <a 
-                routerLink="capital"
-                routerLinkActive="active"
-                class="list-group-item list-group-item-action">
-                Buscar Capital
-            </a>
-        </div>
+  <li
+    routerLink="capital"
+    routerLinkActive="active"
+    class="list-group-item list-group-item-action"
+  >
+    Buscar Capital
+  </li>
+</ul>

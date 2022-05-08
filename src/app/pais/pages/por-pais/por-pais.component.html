@@ -1,43 +1,20 @@
 <h2 class="text-center">Por País</h2>
-<hr>
+<hr />
 <div class="row">
-    <div class="col">
-        <form (ngSubmit)="buscar()" autocomplete="off">
-            <input 
-                type="text"
-                placeholder="Buscar país..."
-                name="termino"
-                class="form-control"
-                [(ngModel)]="termino"
-            >
-        </form>
-        <div *ngIf="hayError" class="alert alert-danger mt-2">No se encontró el texto {{termino}}</div>
+  <div class="col">
+    <app-pais-input
+      (onEnter)="buscar($event)"
+      (onDebouncer)="sugerencia($event)"
+    >
+    </app-pais-input>
+    <div *ngIf="hayError" class="alert alert-danger mt-2">
+      No se encontró el texto {{ termino }}
     </div>
+  </div>
 </div>
 
-<div *ngIf="!hayError && paises.length>0" class="row">
-    <div class="col">
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Bandera</th>
-                    <th>Nombre</th>
-                    <th>Población</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let pais of paises; let indice = index">
-                    <td>{{indice + 1}}</td>
-                    <td><img [src]="pais.flag" alt="bandera"></td>
-                    <td>{{pais.name}}</td>
-                    <td>{{pais.population | number}}</td>
-                    <td>
-                        <a [routerLink]="[ '/pais', pais.alpha2Code ]">...ver</a>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+<div *ngIf="!hayError && paises.length > 0" class="row">
+  <div class="col">
+    <app-pais-tabla [paises]="paises"></app-pais-tabla>
+  </div>
 </div>
