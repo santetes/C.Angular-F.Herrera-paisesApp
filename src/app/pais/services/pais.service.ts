@@ -27,4 +27,8 @@ export class PaisService {
 
     return this.http.get<Pais>(url);
   }
+  buscarPaisPorRegion(region: string): Observable<Pais[]> {
+    const url = `${this.apiUrl}/regionalbloc/${region}`;
+    return this.http.get<Pais[]>(url);
+  }
 }
