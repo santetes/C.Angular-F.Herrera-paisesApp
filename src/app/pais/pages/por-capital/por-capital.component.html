@@ -1,4 +1,4 @@
-<h2 class="text-center">Por Capital</h2>
+<h2 class="text-center animate__animated animate__fadeIn">Por Capital</h2>
 <hr />
 <div class="row">
   <div class="col">
@@ -13,6 +13,11 @@
     </div>
   </div>
 </div>
+<app-pais-sugerencias
+  [tipo]="'capital'"
+  [paisesSugeridos]="paisesSugeridos"
+  (onSeleccionSugerido)="buscarPais($event)"
+></app-pais-sugerencias>
 
 <div *ngIf="!hayError && paises.length > 0" class="row">
   <div class="col">

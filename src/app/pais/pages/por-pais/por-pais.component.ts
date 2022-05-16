@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { map } from 'rxjs';
 import { Pais } from '../../interfaces/pais.interface';
 import { PaisService } from '../../services/pais.service';
 
@@ -11,6 +12,7 @@ export class PorPaisComponent {
   termino: string = '';
   hayError: boolean = false;
   paises: Pais[] = [];
+  paisesSugeridos: Pais[] = [];
   textoPlaceholder: string = '';
 
   constructor(private paisService: PaisService) {}
@@ -22,6 +24,7 @@ export class PorPaisComponent {
       next: (paises) => {
         this.paises = paises;
         this.termino = '';
+        this.paisesSugeridos = [];
       },
       error: (err) => {
         this.hayError = true;
@@ -32,5 +35,13 @@ export class PorPaisComponent {
 
   sugerencia(termino: string) {
     this.hayError = false;
+    this.paises = [];
+
+    this.paisService.buscarPais(termino).subscribe({
+      next: (paises) => (this.paisesSugeridos = paises.splice(0, 5)),
+      error: (err) => (this.paisesSugeridos = []),
+    });
+
+    if (termino.length == 0) this.paisesSugeridos = [];
   }
 }
